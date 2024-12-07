@@ -1,0 +1,157 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: #f0f2f5;
+  font-family: system-ui, -apple-system, sans-serif;
+}
+
+h2.title {
+  text-align: center;
+  font-size: 30px;
+  margin: 32px 0;
+  text-transform: uppercase;
+  font-weight: 900;
+  position: relative;
+}
+
+h2.title::after {
+  position: absolute;
+  content: "";
+  width: 80px;
+  height: 2px;
+  background: #1a1a1a;
+  bottom: -16px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.testimonials-container {
+  display: flex;
+  gap: 32px;
+  max-width: 1200px;
+  margin-inline: auto;
+  height: 500px;
+  width: 100%;
+  padding: 24px;
+}
+
+.column {
+  height: 100%;
+  overflow: hidden;
+  mask-image: linear-gradient(
+    to bottom,
+    transparent 0%,
+    black 15%,
+    black 85%,
+    transparent 100%
+  );
+}
+
+.testimonials {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+
+.column:hover .testimonials {
+  animation-play-state: paused;
+}
+
+.card {
+  background: #fff;
+  padding: 24px;
+  border-radius: 16px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+.card .profile img {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  object-fit: cove;
+}
+
+.card .profile {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.card .profile .name {
+  font-weight: 600;
+  color: #1a1a1a;
+}
+
+.card .profile .role {
+  font-size: 14px;
+  color: #666;
+}
+
+.card .content {
+  color: #444;
+  line-height: 1.5;
+}
+
+.column:nth-child(1) .testimonials {
+  animation-name: scrollUp;
+  animation-duration: 23s;
+}
+
+.column:nth-child(2) .testimonials {
+  animation-name: scrollDown;
+  animation-duration: 50s;
+}
+
+.column:nth-child(3) .testimonials {
+  animation-name: scrollUp;
+  animation-duration: 30s;
+}
+
+@keyframes scrollUp {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(-50%);
+  }
+}
+
+@keyframes scrollDown {
+  from {
+    transform: translateY(-50%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 768px) {
+  .testimonials-container {
+    gap: 16px;
+    padding: 16px;
+  }
+  .column:nth-child(3) {
+    display: none;
+  }
+
+  .column:hover .testimonials {
+    animation-play-state: running;
+  }
+}
+
+@media (max-width: 640px) {
+  .column {
+    display: none;
+  }
+
+  .column:first-child {
+    display: block;
+  }
+}
